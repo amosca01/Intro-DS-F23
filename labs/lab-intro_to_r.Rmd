@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(eval = FALSE)
 library(tidyverse)
@@ -337,11 +342,19 @@ with many of them.
 ## More Practice
 
 In the previous few sections, you recreated some of the displays and preliminary 
-analysis of magazine revenue data. Your task for the rest of this session involves repeating these steps, but for **a dataset of your own choosing**. Find or load a new dataset, and try answering the following questions:
+analysis of magazine revenue data. Your task for the rest of this session involves repeating these steps, but for **a dataset of your own choosing**. 
 
+Start a **new** R Markdown file, and do/answer the following:
+
+1. Find or load a new dataset. 
+1. Explain where you found your dataset and who collected the data. Do you expect any biases or issues in the data? 
+1. Print a glimpse of the dataset. 
 1. What columns are included in the dataset?
-2. How many records does it contain?
-3. What patterns/relationships do you notice?
+1. How many records does it contain?
+1. Choose two variables in the dataset you believe might be related. Explain how you think they are related. 
+1. Make a quick plot to confirm or disprove if/how those variable are related. 
+1. Add a new variable to your dataset. 
+1. Make a quick plot that shows the relationship between the new variable and one of the original variables. Describe the relationship. 
 
 <div id="license">
 This is a product of OpenIntro that is released under a 
