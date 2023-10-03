@@ -1,0 +1,110 @@
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+In this lab, we will continue to develop our data transformation skills by learning how to use the `group_by()` function in conjunction with the `summarize()` verb that we dabbled with previously. 
+
+```{r, message=FALSE, warning=FALSE, eval=TRUE}
+library(tidyverse)
+library(babynames)
+```
+
+**Goal**: by the end of this lab, you will be able to use `group_by()` to perform summary operations on groups. 
+
+## Summarization with `group_by()` 
+
+Let's revisit the `babynames` dataset. Choose a name, and think about how you would go about answering the following question:
+
+> In which year was that name given to M and F babies most equally (i.e. **closest to a 50/50 split**)?
+
+*Add your answer here*
+
+You could, of course, scan the data visually to estimate the percentages in each year:
+
+```{r}
+babynames %>%
+  filter(name == "Ellis")
+```
+
+But this is pretty inefficient and does not provide an exact solution. 
+
+What if instead we had a data column that told us, for each year, the ratio of F to M babies with our chosen name? The closer this ratio is to 1, the closer the numbers of M and F babies with the chosen name are to each other.   
+
+The key to implementing this solution is to recognize that we need to collapse the **two** rows corresponding to each assigned sex in each year into a single row that contains the information for both sexes (i.e. `summarize()`). Unfortunately, there is no way for R to know what to compute its own---we have to tell it. 
+
+The `group_by()` function specifies a variable on which the data frame will be collapsed. Each row in the result set will correspond to one unique value of that variable. In this case, we want to group by `year`. [This is sometimes called **"rolling up"** a data set.]
+
+```{r}
+babynames %>%
+  filter(name == "Ellis") %>%
+  group_by(year)
+```
+
+This doesn't seem to do much at first glance, because we haven't asked R to compute anything: we've just asked it to reorganize the data into groups based on the variable `year`. But that's about to change!
+
+## A better way: aggregation
+Remember that `summarize()` takes a list of definitions for columns you want to see in the result set. The key to understanding `summarize()` is to note that it operates on vectors (which may contain many values), but each variable defined within `summarize()` **must return a single value** (per group). [Why?] 
+
+Thus, the variables defined by the arguments to `summarize()` usually involve *aggregate* functions like `sum()`, `mean()`, `length()`, `max()`, `n()`, etc. In this case, we can use the conditional `ifelse()` statement around a `sum()` to extract the number of `F` babies born in each year [this will be our numerator], and another one to extract the total number of `M` babies born in that same year [this will be our denominator]:
+
+```{r}
+babynames %>%
+  filter(name == "Ellis") %>%
+  group_by(year) %>%
+  summarize(N = n(), 
+            ratio = sum(ifelse(sex == "F", n, 0)) / 
+                    sum(ifelse(sex == "M", n, 0)))
+```
+
+Now all that's left is to look for the year with a `ratio` that's closest to 1. Since we don't care whether the closest value is over or under, we can just subtract that `ratio` from 1 and take the absolute value. Then all we have to do is `arrange()` by the resulting value:
+
+```{r}
+babynames %>%
+  filter(name == "Ellis") %>%
+  group_by(year) %>%
+  summarize(N = n(), 
+            ratio = sum(ifelse(sex == "F", n, 0)) / 
+                    sum(ifelse(sex == "M", n, 0)),
+            howfaroff = abs(1 - ratio)) %>%
+  filter(N == 2)  %>% # Filter to years where there were M and F babies with name
+  arrange(howfaroff)
+```
+
+Let's take these functions out for a spin by answering a couple of questions!
+
+## Your Turn!
+
+### 1. Bumper crop
+Which year had the greatest number of births?
+
+```{r}
+## Your code here 
+```
+
+### 2. "In fashion"
+What are the earliest and latest year that each name appears?
+
+```{r}
+## Your code here 
+```
+
+### 3. Persistence
+Find all names that have two entries for each of the `r length(unique(babynames$year))` years.
+
+```{r}
+## Your code here 
+```
+
+### 4. Popular names
+Among popular names (let's say at least 1% of the births in a given year), which name is the *youngest*---meaning that its first appearance as a popular name is the most recent? 
+
+```{r}
+## Your code here 
+```
+
+Now let's find the most popular names of the 1990s. 
+
+```{r}
+## Your code here 
+```
+
