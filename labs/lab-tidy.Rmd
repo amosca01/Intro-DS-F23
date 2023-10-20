@@ -165,6 +165,6 @@ Try this process out for yourself with a [Gapminder dataset](http://www.gapminde
 
 #### Step 6:
 
-> Say something interesting! Here's one example:
+> Say something interesting!
 
 

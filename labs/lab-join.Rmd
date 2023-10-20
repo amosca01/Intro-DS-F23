@@ -134,7 +134,7 @@ Finally, a `full_join()` returns all rows from both tables, regardless of whethe
 
 ```{r}
 total_births <- census_births %>%
-  full_join(ssa_births_no_2012, by = "year")
+  full_join(ssa_births, by = "year")
 
 total_births %>%
   filter(is.na(births) | is.na(N))
@@ -151,8 +151,8 @@ With the tables joined, we can compare the birth numbers directly. Let's look at
 
 total_births %>%
   mutate(census_equals_ssa = births == N) %>%
-  filter(census_equals_ssa == FALSE) %>% 
-  summarise(num_different_counts = n())
+  filter(census_equals_ssa == FALSE) #%>% 
+  #summarise(num_different_counts = n())
 
 ```
 
