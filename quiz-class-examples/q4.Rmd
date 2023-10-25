@@ -1,0 +1,50 @@
+---
+title: "scrap"
+output: html_document
+date: '2023-10-23'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+
+students <- tibble(
+  ID = c("001", "002", "003", "004"),
+  FirstName = c("Ab", "Kaden", "Sarah", "Henri"),
+  LastName = c("Mosca", "Paulson-Smith", "Saydun", "Garrison-Desany"),
+  Class1 = c("CAIS117", "CAIS117", "MATH108", "CAIS117"),
+  Class2 = c("CAIS105", "CAIS105", "CAIS105", "CAIS105"),
+  Class3 = c("MATH108", "MATH108", "CAIS117", "CAIS220")
+)
+
+grades <- tibble(
+  Student = c("001", "002", "002",
+              "002", "006","004"),
+  Grade = c(85, 72, 89, 
+            64, 99, 81),
+  Class = c("CAIS117", "CAIS117", "MATH108",
+            "CAIS105", "MATH330", "CAIS117")
+)
+
+time <- tibble(
+  Student = c("001", "001", "002", "002", 
+              "003", "003", "004", "004",
+              "005", "005", "006", "006"),
+  Case = c("Homework", "ExtraCurriculars", "Homework", "ExtraCurriculars", 
+           "Homework", "ExtraCurriculars", "Homework", "ExtraCurriculars",
+           "Homework", "ExtraCurriculars", "Homework", "ExtraCurriculars"), 
+  Hours.Number = c(4, 6, 9, 2, 
+                   6, 3, 1, 7,
+                   4, 2, 1, 10)
+)
+
+```
+
+```{r}
+
+
+
+```
