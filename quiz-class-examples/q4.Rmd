@@ -45,6 +45,24 @@ time <- tibble(
 
 ```{r}
 
+students %>% 
+  left_join(grades, by = c("ID" = "Student"))
+
+students %>% 
+  right_join(time, by = c("ID" = "Student"))
 
 
+```
+
+```{r}
+time %>%
+  pivot_wider(names_from = "Case", values_from = "Hours.Number")
+
+grades %>%
+  pivot_wider(names_from = "Case", values_from = "Hours.Number")
+
+pivoted <- students %>% 
+  pivot_longer(c("Class1", "Class2", "Class3"), 
+               names_to = "Class Rank", 
+               values_to = "Class Name")
 ```
