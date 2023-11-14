@@ -216,7 +216,7 @@ But what if we had a long list of names? We wouldn't want to have to copy and pa
 For example, Ab's friends have the following names:
 
 ```{r}
-abs_family <- c("Jordan", "Kaden", "Kylee", "Felix")
+abs_family <- c("Jordan", "Kaden", "Kylee")
 ```
 
 In order to call the `most_popular_year()` function on each of those names, we can write:
@@ -312,46 +312,26 @@ library(nycflights13)
 > Write a function that, for a given carrier identifier (e.g. `DL`), will retrieve the five most common airport destinations from NYC in 2013, and how often the carrier flew there.
 
 ```{r}
-most_common_dest <- function(c = "DL") {
-  flights %>%
-    filter(carrier == c) %>%
-    group_by(dest) %>%
-    summarise(nflights = n()) %>%
-    top_n(5, nflights) %>%
-    arrange(nflights)
-}
+
 ```
 
 > Use your function to find the top five destinations for Delta Airlines (`DL`).
 
 ```{r}
-most_common_dest()
+
 ```
 
 
 > Use your function to find the top five destinations for American Airlines (`AA`). How many of these destinations are shared with Delta? 
 
 ```{r}
-most_common_dest("AA")
+
 ```
 
 
 > Write a function that, for a given airport code (e.g. `BDL`), will retrieve the five most common carriers that service that airport from NYC in 2013, and what their average arrival delay time was. 
 
 ```{r}
-top_carriers <- function(airport = "MCO") {
-  flights %>%
-    filter(dest == airport) %>%
-    group_by(carrier) %>%
-    summarise(nflights = n(),
-              avg_arr_delay = mean(arr_delay, na.rm = TRUE),
-              sd = sd(arr_delay, na.rm = TRUE)) %>%
-    mutate(lower.ci = avg_arr_delay - qt(1 - (0.05 / 2), nflights - 1) * sd / sqrt(nflights),
-           upper.ci = avg_arr_delay + qt(1 - (0.05 / 2), nflights - 1) * sd / sqrt(nflights)) %>%
-    mutate(ci = paste("[", lower.ci, ",", upper.ci, "]")) %>%
-    select(-sd, -lower.ci, -upper.ci) %>%
-    top_n(5, nflights)
-}
-top_carriers()
+
 ```
 
