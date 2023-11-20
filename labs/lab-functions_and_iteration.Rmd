@@ -313,6 +313,7 @@ library(nycflights13)
 
 ```{r}
 
+
 ```
 
 > Use your function to find the top five destinations for Delta Airlines (`DL`).
@@ -332,6 +333,7 @@ library(nycflights13)
 > Write a function that, for a given airport code (e.g. `BDL`), will retrieve the five most common carriers that service that airport from NYC in 2013, and what their average arrival delay time was. 
 
 ```{r}
+
 
 ```
 
