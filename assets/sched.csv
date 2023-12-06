@@ -37,9 +37,9 @@ noClass ,italic ,F,11.24,NO CLASS - UNIVERSITY HOLIDAY ,,,
 ,proj,M,11.27,Mini-Project 4,,,proj-proposal
 ,proj,W,11.29,Mini-Project 4,,,mp4
 ,speaker,F,12.01,"Guest Speaker: Data Science for Public Health, Henri Garrison-Desany",,,
-,proj,M,12.04,Mini-Project 4,,,"mp4, proj-in-prog"
-,,W,12.06,Advanced Topics - VA / interactive VIS,Ch 14,,
-,proj,F,12.08,Final Project Work Session,,,
-presy,proj,M,12.11,Final Project Work Session,,,proj 
+,proj,M,12.04,Mini-Project 4,,,mp4
+,proj,W,12.06,Final Project Work Session,,,proj-in-prog
+,,F,12.08,Advanced Topics - VA / interactive VIS,Ch 14,,
+,proj,M,12.11,Final Project Work Session,,,proj 
 presy,proj,W,12.13,Final Project Presentations,,,
 presy,proj ,F,12.15,Final Project Presentations,,,
